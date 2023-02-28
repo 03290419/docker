@@ -1,0 +1,26 @@
+---
+sidebar_position: 1
+---
+
+# 워드프레스 Mysql Container
+
+네트워크 생성
+
+```shell
+docker network create 네트워크_이름
+```
+
+MySQL 컨테이너 생성 및 실행
+
+```shell
+docker run --name 컨테이너_이름 -dit --net=네트워크_이름 -e MYSQL_ROOT_PASSWORD=MySQL_루트_패스워드 -e MYSQL_DATABASE=데이터베이스_이름 -e MYSQL_USER=MySQL_사용자_이름 -e MYSQL_PASSWORD=MySQL_패스워드 mysql --character-set-server=문자_인코딩 --collation-server=정렬_순서 --default-authentical-plugin=인증_방식
+```
+
+워드프레스 컨테이너 생성
+
+```shell
+docker run --name 컨테이너_이름 -dit --net=네트워크_이름 -p 포트_설정 -e WORDPRESS_DB_HOST=데이터베이스_컨테이너_이름 -e WORDPRESS_DB_NAME=데이터베이스_이름 -e WORDPRESS_DB_USER=데이터베이스_사용자_이름 -e WORDPRESS_DB_PASSWORD=데이터베이스_패스워드 wordpress
+```
+
+워드프레스를 사용하려면 워드프레스 프로그램 외에도 아파치와 PHP 런타임, MYSQL이 필요하다.
+아파치, PHP, MySQL, Linux를 합친 조합을 LAMP 스택이라고 부른다.
