@@ -1,0 +1,17 @@
+---
+sidebar_position: 2
+---
+
+# Redmine MySQL Container
+
+MySQL 컨테이너 생성 및 실행
+
+```shell
+docker run --name MySQL_컨테이너_이름 -dit --net=네트워크_이름 -e MYSQL_ROOT_PASSWORD=MySQL_루트_패스워드 -e MYSQL_DATABASE=MySQL_데이터베이스_이름 -e MYSQL_USER=MySQL_사용자_이름 -e MYSQL_PASSWORD=MySQL_패스워드 mysql --character-set-server=문자_인코딩 --collation-server=정렬_순서 --default-authentical-plugin=인증_방식
+```
+
+레드마인 컨테이너 생성 및 실행
+
+```shell
+docker run -dit --name 레드마인_컨테이너_이름 --network 네트워크_이름 -p 8086:3000 -e REDMINE_DB_MYSQL=MySQL_컨테이너_이름 -e REDMINE_DB_DATABASE=MySQL_데이터베이스_이름 -e REDMINE_DB_USERNAME=MySQL_사용자_이름 -e REDMINE_DB_PASSWORD=MySQL_패스워드 redmine
+```
