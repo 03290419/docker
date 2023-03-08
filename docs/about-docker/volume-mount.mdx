@@ -1,0 +1,109 @@
+---
+sidebar_position: 5
+---
+
+# Volume and Mount
+
+## 스토리지를 마운트하는 절차
+
+스토리지 영역을 생성 -> 컨테이너를 생성(및 마운트)
+
+볼륨 마운트는 볼륨 상위 커맨드를 사용해 먼저 볼륨을 생성한다.
+
+```shell
+docker volume create 볼륨_이름
+```
+
+```shell
+docker volume rm 볼륨_이름
+```
+
+export const Table = ({ children }) => {
+  return <table>{children}</table>;
+};
+
+export const Thead = ({ children }) => {
+  return (
+    <thead className="bg-indigo-200 text-white">
+      <tr>
+        {children.length >= 1 &&
+          children.map((child, index) => <th key={index}>{child}</th>)}
+      </tr>
+    </thead>
+  );
+};
+
+export const Tbody = ({ children }) => {
+  return (
+    <tbody>
+      {children.length >= 1 &&
+        children.map((child, index) => (
+          <tr className={index % 2 === 0 ? "bg-indigo-100 " : ""}>{child}</tr>
+        ))}
+    </tbody>
+  );
+};
+
+export const Td = ({ children }) => {
+  return (
+    <>
+      {children.length >= 1 &&
+        children.map((child, index) => <td key={index}>{child}</td>)}
+    </>
+  );
+};
+
+<Table>
+  <Thead children={["커맨드", "내용", "생략 가능 여부", "주요 옵션"]} />
+  <Tbody
+    children={[
+      <Td children={["create", "볼륨을 생성", "X", "거의 사용하지 않음"]} />,
+      <Td
+        children={[
+          "inspect",
+          "볼륨의 상세 정보를 출력",
+          "X",
+          "거의 사용하지 않음",
+        ]}
+      />,
+      <Td
+        children={[
+          "inspect",
+          "볼륨의 상세 정보를 확인",
+          "X",
+          "거의 사용하지 않음",
+        ]}
+      />,
+      <Td children={["ls", "볼륨의 목록을 확인", "X", "거의 사용하지 않음"]} />,
+      <Td
+        children={[
+          "prune",
+          "현재 마운트되지 않은 볼륨을 모두 삭제",
+          "X",
+          "거의 사용하지 않음",
+        ]}
+      />,
+      <Td children={["rm", "지정한 볼륨을 삭제", "X", "거의 사용하지 않음"]} />,
+    ]}
+  />
+</Table>
+
+## 스토리지를 마운트하는 커맨드
+
+바인드 마운트 커맨드
+
+```shell
+docker run (생략) -v 스토리지_실제_경로:컨테이너_마운트_경로 (생략)
+```
+
+볼륨 마운트 커맨드
+
+```shell
+docker run (생략) -v 볼륨_이름:컨테이너_마운트_경로 (생략)
+```
+
+## Example Code
+
+```shell
+ docker run --name apa000ex20 -d -p 8090:80 -v /Users/{USER}/Documents/apa_folder:/usr/local/apache2/htdocs httpd
+```
