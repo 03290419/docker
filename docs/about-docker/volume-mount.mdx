@@ -104,6 +104,32 @@ docker run (생략) -v 볼륨_이름:컨테이너_마운트_경로 (생략)
 
 ## Example Code
 
+**bind mount**
+
 ```shell
- docker run --name apa000ex20 -d -p 8090:80 -v /Users/{USER}/Documents/apa_folder:/usr/local/apache2/htdocs httpd
+ docker run --name {CONTAINER_NAME} -d -p 8090:80 -v /Users/{USER}/Documents/apa_folder:/usr/local/apache2/htdocs httpd
+```
+
+**volume mount**
+
+볼륨 생성
+
+```shell
+docker volume create {VOLUME_NAME}
+```
+
+볼륨 상태 확인
+
+```shell
+docker volume inspect {VOLUME_NAME}
+```
+
+```shell
+docker run --name {CONTAINER_NAME} -d -p 8091:80 -v {VOLUME_NAME}:/usr/local/apache2/htdocs httpd
+```
+
+컨테이너 연결 확인
+
+```shell
+ docker container inspect {CONTAINER_NAME}
 ```
