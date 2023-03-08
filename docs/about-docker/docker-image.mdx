@@ -15,3 +15,30 @@ docker image rm 이미지_이름
 ```shell
 docker image ls
 ```
+
+# Docker Commit
+
+## Example Code
+
+아파치 컨테이너 생성
+
+```shell
+docker run --name {CONTAINER_NAME} -d -p 8080:80 httpd
+```
+
+```shell
+docker commit {CONTAINER_NAME} {IMAGE_NAME}
+```
+
+# Dockerfile
+
+Dockerfile 생성
+
+```Dockerfile
+FROM httpd
+COPY index.html /usr/local/apache2/htdocs
+```
+
+```shell
+docker build -t {IMAGE_NAME} {DOCKERFILE_DIR}
+```
